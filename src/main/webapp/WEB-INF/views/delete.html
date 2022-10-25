@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+
+<p>
+    <a href="/">Back</a>
+</p>
+
+<h1>Delete Song</h1>
+
+<form action="/delete" method="post"
+      th:object="${songDelete}">
+    <input type="hidden" th:field="*{id}">
+    Name:
+    <p th:text="*{name}"></p>
+    Singer:
+    <p th:text="*{singer}"></p>
+    Category:
+    <p th:text="*{category}"></p>
+    <input type="submit" value="Delete">
+</form>
+
+</body>
+</html>

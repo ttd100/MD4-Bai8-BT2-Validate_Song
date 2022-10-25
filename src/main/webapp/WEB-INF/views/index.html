@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+
+<div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Singer</th>
+            <th>Category</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="row:${songList}">
+            <td th:text="${row.id}"></td>
+            <td th:text="${row.name}"></td>
+            <td th:text="${row.singer}"></td>
+            <td th:text="${row.category}"></td>
+            <td><a th:href="@{/edit(id=${row.id})}">Edit</a></td>
+            <td><a th:href="@{/delete(id=${row.id})}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <form action="/" method="post" style="border: 1px solid black; float: right; padding: 10px; margin: 10px"
+          th:object="${song}">
+        <label>
+            Name: <br>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></span><br>
+            <input type="text" th:field="*{name}">
+        </label><br>
+        <label>
+            Singer: <br>
+            <span th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}" style="color: red"></span><br>
+            <input type="text" th:field="*{singer}">
+        </label><br>
+        <label>
+            Category: <br>
+            <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" style="color: red"></span><br>
+            <input type="text" th:field="*{category}">
+        </label><br>
+        <input type="submit" value="Create">
+    </form>
+</div>
+
+</body>
+</html>
